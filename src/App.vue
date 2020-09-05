@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <Search searchTitle="Search more than 59M users" />
-    <Dashboard />
+    <Search />
   </div>
 </template>
 
 <script>
-import Search from './components/Search.vue';
-import Dashboard from './views/Dashboard.vue';
+import Search from "./components/Search.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Dashboard,
     Search
   }
 };

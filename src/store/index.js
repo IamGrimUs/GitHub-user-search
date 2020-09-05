@@ -6,11 +6,23 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    searchInput: '',
     users: []
+  },
+  getters: {
+    getUsers: state => {
+      return state.users;
+    },
+    getSearchInput: state => {
+      return state.searchInput;
+    }
   },
   mutations: {
     SET_USERS(state, users) {
       state.users = users;
+    },
+    SET_SEARCHINPUT(state, searchInput) {
+      state.searchInput = searchInput;
     }
   },
   actions: {
@@ -23,6 +35,9 @@ export default new Vuex.Store({
         .catch(error => {
           console.log('There was an error:', error.response);
         });
+    },
+    updateSearchInput({ commit }, searchInput) {
+      commit('SET_SEARCHINPUT', searchInput);
     }
   }
 });
