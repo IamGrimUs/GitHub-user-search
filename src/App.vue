@@ -23,6 +23,9 @@ export default {}
 body {
   background-color: #f1f1f1;
 }
+.container {
+  width: 98%;
+}
 .flex {
   display: flex;
   justify-content: space-between;

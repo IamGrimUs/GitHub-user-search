@@ -41,7 +41,6 @@ export default new Vuex.Store({
           for (let user of res.data.items) {
             let userDetails = await UserServices.getUserDetails(user.url)
             users.push(userDetails.data)
-            console.log(users)
           }
           commit('SET_USERS', users)
         })

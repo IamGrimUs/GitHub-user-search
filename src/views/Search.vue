@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 880px;
-  width: 98%;
+  margin: 0 auto;
 }
 .float-left {
   float: left;
