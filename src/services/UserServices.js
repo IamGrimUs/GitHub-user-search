@@ -7,10 +7,12 @@ const apiClient = axios.create({
   },
 })
 
-export default {
-  getUsers(searchTerm, pageNumber) {
-    return apiClient.get(
-      `https://api.github.com/search/users?q=${searchTerm}&per_page=50&page=${pageNumber}`
-    )
-  },
+export function getUsers(searchTerm, pageNumber) {
+  return apiClient.get(
+    `https://api.github.com/search/users?q=${searchTerm}&per_page=10&page=${pageNumber}`
+  )
 }
+export function getUserDetails(userURL) {
+  return apiClient.get(userURL)
+}
+export default { getUsers, getUserDetails }

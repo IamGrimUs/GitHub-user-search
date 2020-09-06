@@ -1,43 +1,47 @@
 <template>
   <div>
-    <h1>{{ searchTitle }}</h1>
-    <form>
-      <label for="searchInput">
-        <div id="magnifying-glass"></div>
-        User Name:
-        <input type="text" id="searchInput" v-model="input" />
-      </label>
-      <button @click.prevent="updateSearchInput">Search</button>
-    </form>
+    <v-card class="container pa-8">
+      <h1 class="text-center">Search more than 59M users on GitHub</h1>
+      <v-form class="mt-6" @submit.prevent="searchUsers">
+        <div id="magnifying-glass" class="mr-4 float-left mt-6"></div>
+        <v-text-field
+          v-model="input"
+          id="searchInput"
+          label="User Name"
+          required
+        ></v-text-field>
+        <div class="mt-6">
+          <v-btn color="primary" type="submit">Search</v-btn>
+        </div>
+      </v-form>
+    </v-card>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'search',
-  props: {
-    searchTitle: {
-      type: String,
-      default: 'Search more than 59M users',
-    },
-  },
   data() {
     return {
       input: '',
     }
   },
   methods: {
-    updateSearchInput() {
+    searchUsers() {
       this.$store.dispatch('updateSearchInput', this.input)
       this.$store.dispatch('fetchUsers', 1)
+      this.$router.push('allUsers')
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  text-align: center;
+.container {
+  max-width: 880px;
+  width: 98%;
+}
+.float-left {
+  float: left;
 }
 /* CSS magnifying glass from CSS Tricks article https://css-tricks.com/the-shapes-of-css/ */
 #magnifying-glass {
