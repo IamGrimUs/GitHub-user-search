@@ -1,13 +1,16 @@
 <template>
   <div>
-    <p>Hopefully the user is captured.</p>
+    <p>The user is:</p>
+    <p>{{ user }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "User"
-};
+  props: {
+    user: {},
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

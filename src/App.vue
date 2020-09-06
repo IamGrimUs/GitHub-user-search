@@ -1,18 +1,13 @@
 <template>
   <div id="app">
-    <Search />
+    <v-app id="inspire">
+      <router-view :key="$route.fullPath" />
+    </v-app>
   </div>
 </template>
 
 <script>
-import Search from "./components/Search.vue";
-
-export default {
-  name: "App",
-  components: {
-    Search
-  }
-};
+export default {}
 </script>
 
 <style lang="scss">
