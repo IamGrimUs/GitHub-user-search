@@ -9,7 +9,7 @@ const apiClient = axios.create({
 
 export function getUsers(searchTerm, pageNumber) {
   return apiClient.get(
-    `https://api.github.com/search/users?q=${searchTerm}&per_page=10&page=${pageNumber}`
+    `https://api.github.com/search/users?q=${searchTerm}&per_page=5&page=${pageNumber}`
   )
 }
 export function getUserDetails(userURL) {

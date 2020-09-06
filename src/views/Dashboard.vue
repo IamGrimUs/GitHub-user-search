@@ -7,23 +7,21 @@
           <v-avatar :size="80">
             <img :src="user.avatar_url" />
           </v-avatar>
-          <p class="text-center user-name mt-4">{{ user.login }}</p>
-          <p class="text-center mt-4" v-if="user.bio">{{ user.bio }}</p>
-          <p v-else>No description provided.</p>
-          <div class="flex">
+          <p class="text-center user-name mt-4">{{ user.name }}</p>
+          <p class="text-center mt-2">{{ user.login }}</p>
+          <p class="text-center mt-4">{{ user.bio }}</p>
+          <div class="flex mt-6">
             <div>
               <p class="bold">Followers</p>
-              <p class="text-center mt-4" v-if="user.followers">
+              <p class="text-center mt-4">
                 {{ user.followers }}
               </p>
-              <p v-else>0</p>
             </div>
             <div>
               <p class="bold">Following:</p>
-              <p class="text-center mt-4" v-if="user.following">
+              <p class="text-center mt-4">
                 {{ user.following }}
               </p>
-              <p v-else>0</p>
             </div>
           </div>
         </v-card>

@@ -14,9 +14,6 @@ export default new Vuex.Store({
     getUsers: state => {
       return state.users
     },
-    getSingleUser: state => {
-      return state.user
-    },
     getTotalUserCount: state => {
       return state.totalUserCount
     },
@@ -24,9 +21,6 @@ export default new Vuex.Store({
   mutations: {
     SET_USERS(state, users) {
       state.users = users
-    },
-    SET_USERDETAILS(state, index, details) {
-      state.users[index] = details
     },
     SET_TOTALUSERCOUNT(state, totalUserCount) {
       state.totalUserCount = totalUserCount
@@ -40,12 +34,17 @@ export default new Vuex.Store({
       UserServices.getUsers(this.state.searchInput, pageNumber)
         .then(response => {
           commit('SET_TOTALUSERCOUNT', response.data.total_count)
-          commit('SET_USERS', response.data.items)
+          return response
         })
-        .then(() => {
-          console.log(this.state.users)
+        .then(async res => {
+          let users = []
+          for (let user of res.data.items) {
+            let userDetails = await UserServices.getUserDetails(user.url)
+            users.push(userDetails.data)
+            console.log(users)
+          }
+          commit('SET_USERS', users)
         })
-
         .catch(error => {
           console.log('There was an error:', error.response)
         })
