@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
+import SearchResults from '../views/SearchResults.vue'
 import Search from '../views/Search.vue'
 
 Vue.use(VueRouter)
@@ -12,8 +12,8 @@ const routes = [
     component: Search,
   },
   {
-    path: '/allUsers',
-    component: Dashboard,
+    path: '/searchResults',
+    component: SearchResults,
   },
 ]
 

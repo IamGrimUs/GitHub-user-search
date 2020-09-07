@@ -1,8 +1,11 @@
 <template>
-  <div>
+  <div class="mb-12">
     <Navbar />
     <h1>Here's a list of users matching the serach term {{ searchInput }}.</h1>
-    <div class="user-grid mt-6">
+    <template v-if="isLoading">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    </template>
+    <div class="user-grid mt-6" v-else>
       <template v-for="user in users">
         <v-card class="pa-4" @click="gotoGitHub(user.html_url)" :key="user.id">
           <v-avatar :size="80">
@@ -66,7 +69,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['users', 'totalUserCount', 'searchInput']),
+    ...mapState(['users', 'totalUserCount', 'searchInput', 'isLoading']),
   },
   watch: {
     page() {

@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isLoading: false,
     searchInput: '',
     totalUserCount: 0,
     users: [],
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     getTotalUserCount: state => {
       return state.totalUserCount
+    },
+    getIsLoading: state => {
+      return state.isLoading
     },
   },
   mutations: {
@@ -31,6 +35,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchUsers({ commit }, pageNumber) {
+      this.state.isLoading = true
       UserServices.getUsers(this.state.searchInput, pageNumber)
         .then(response => {
           commit('SET_TOTALUSERCOUNT', response.data.total_count)
@@ -38,11 +43,13 @@ export default new Vuex.Store({
         })
         .then(async res => {
           let users = []
-          for (let user of res.data.items) {
+          let getUserPromises = res.data.items.map(async user => {
             let userDetails = await UserServices.getUserDetails(user.url)
             users.push(userDetails.data)
-          }
+          })
+          await Promise.all(getUserPromises)
           commit('SET_USERS', users)
+          this.state.isLoading = false
         })
         .catch(error => {
           console.log('There was an error:', error.response)

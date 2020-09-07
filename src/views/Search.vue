@@ -29,7 +29,7 @@ export default {
     searchUsers() {
       this.$store.dispatch('updateSearchInput', this.input)
       this.$store.dispatch('fetchUsers', 1)
-      this.$router.push('allUsers')
+      this.$router.push('searchResults')
     },
   },
 }
